@@ -1,0 +1,14 @@
+spring.rabbitmq.host=localhost
+spring.rabbitmq.port=5672
+spring.rabbitmq.username=guest
+spring.rabbitmq.password=guest
+
+rabbitmq.exchange.name=avinash-exchange-name
+rabbitmq.queue.name=avinash-queu-name
+rabbitmq.routing.key=avinash-routing-key
+
+rabbitmq.json.exchange.name=avinash-json-exchange-name
+rabbitmq.json.queue.name=avinash-json-queue-name
+rabbitmq.json.routing.key=avinash-json-routing-key
+
+server.port =8086

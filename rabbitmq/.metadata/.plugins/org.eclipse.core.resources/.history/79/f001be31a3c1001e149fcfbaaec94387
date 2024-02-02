@@ -1,0 +1,46 @@
+package com.example.rabbitmqexample.configurations;
+
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+
+@Configuration
+public class RabbitQueueConfiguration {
+	
+	@Value("${rabbitmq.exchange.name}")
+	private String exchange_name;
+	
+	@Value("${rabbitmq.queue.name}")
+	private String queue_name;
+	
+	@Value("${rabbitmq.routing.key}")
+	private String routing_key;
+
+
+    @Bean
+    Queue getQueue() {
+		return new Queue(queue_name);
+	}
+	
+	@Bean
+	TopicExchange getTopicExchanger() {
+		return new TopicExchange(exchange_name);
+	}
+	
+	@Bean
+	Binding bindExachangeQueue(){
+		return BindingBuilder
+					.bind(getQueue())
+					.to(getTopicExchanger())
+					.with(routing_key);
+		
+	}
+	
+	
+	
+}

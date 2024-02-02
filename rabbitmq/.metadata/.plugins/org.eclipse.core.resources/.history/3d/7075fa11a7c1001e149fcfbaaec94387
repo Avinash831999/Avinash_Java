@@ -1,0 +1,33 @@
+package com.example.rabbitmqexample.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.rabbitmqexample.dto.Student;
+import com.example.rabbitmqexample.producer.RabbitProducer;
+
+@RestController
+public class RabbitController {
+	
+	@Autowired
+	RabbitProducer producerService;
+	
+	@GetMapping("/produceSampleMessage/{message}")
+	public String sendMessageTQueue(@PathVariable String message) {
+		this.producerService.messageProduce(message);
+		return "Message Sent!";
+	}
+	
+	@PostMapping("/producejsonMessage")
+	public String sendMessageJson(@RequestBody Student student) {
+		this.producerService.JsonMessageProduce(student);
+		return "Json Message Sent";
+		
+	}
+	
+}

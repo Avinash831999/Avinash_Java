@@ -1,0 +1,13 @@
+package com.example.rabbitmqconsumer.service;
+
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.stereotype.Service;
+
+@Service
+public class RabbitConsumer {
+	
+	@RabbitListener(queues = {"${rabbitmq.queue.name}"})
+	public void consumeMesage(String message) {
+		System.out.println("Received messages -> "+message);
+	}
+}

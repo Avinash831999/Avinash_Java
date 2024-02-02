@@ -1,0 +1,81 @@
+package com.example.rabbitmqexample.configurations;
+
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+
+@Configuration
+public class RabbitQueueConfiguration {
+	
+	@Value("${rabbitmq.exchange.name}")
+	private String exchange_name;
+	
+	@Value("${rabbitmq.queue.name}")
+	private String queue_name;
+	
+	@Value("${rabbitmq.routing.key}")
+	private String routing_key;
+
+	
+	@Value("${rabbitmq.json.exchange.name}")
+	private String json_exchange_name;
+	
+	@Value("${rabbitmq.json.queue.name}")
+	private String json_queue_name;
+	
+	@Value("${rabbitmq.json.routing.key}")
+	private String json_routing_key;
+
+
+    @Bean
+    Queue getQueue() {
+		return new Queue(queue_name);
+	}
+	
+	@Bean
+	TopicExchange getTopicExchanger() {
+		return new TopicExchange(exchange_name);
+	}
+	
+	@Bean
+    Queue getJsonQueue() {
+		return new Queue(json_queue_name);
+	}
+	
+	@Bean
+	TopicExchange getJsonTopicExchanger() {
+		return new TopicExchange(json_exchange_name);
+	}
+	
+	@Bean
+	Binding bindExachangeQueue(){
+		return BindingBuilder
+					.bind(getQueue())
+					.to(getTopicExchanger())
+					.with(routing_key);
+		
+	}
+	
+	@Bean
+	Binding JsonBindExachangeQueue(){
+		return BindingBuilder
+					.bind(getJsonQueue())
+					.to(getJsonTopicExchanger())
+					.with(json_routing_key);
+		
+	}
+	
+	@Bean
+	AmqpTemplate geAmqptemplate(org.springframework.amqp.rabbit.connection.ConnectionFactory connFactory) {
+		RabbitTemplate template = new RabbitTemplate(connFactory); 
+		return 
+	}
+	
+}
