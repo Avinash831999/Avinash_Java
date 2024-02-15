@@ -1,0 +1,29 @@
+server:
+  port: 8030
+spring:
+  application:
+    name: order-management
+  datasource:
+    url: jdbc:postgresql://localhost:5436/orderdb
+    username: orderuser
+    password: Login@123
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddl-auto: update
+  config:
+    import: "avi-ecom-config-server:http://localhost:8040/"
+      # -"application_prod.yml"
+      # -"applictaion_qa.yml"
+  # profiles:
+  #   active: "qa" 
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8050/eureka/
