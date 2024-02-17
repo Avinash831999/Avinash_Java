@@ -1,14 +1,18 @@
 package com.aviECom.ordermanagement.dtos;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductDTO{
-	private Long product_id;
+	private Long productId;
 	
-	private String product_uuid;
+	private String productUuid;
 	
-	private String product_name;
+	private String productName;
 	
 	private String category;
 	

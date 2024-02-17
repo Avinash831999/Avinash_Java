@@ -26,13 +26,13 @@ public class ProductServiceImpl implements ProductService{
 	public Long addProduct(ProductDTO product) {
 		
 		ProductEntity productEntity = new ProductEntity();
-		productEntity.setProduct_name(product.getProduct_name());
+		productEntity.setProduct_name(product.getProductName());
 		productEntity.setCategory(product.getCategory());
 		productEntity.setGender(product.getGender());
 		productEntity.setPrice(product.getPrice());
 		productEntity.setDiscount(product.getDiscount());
 		
-		productEntity.setProductId(UUID.randomUUID().toString());
+		productEntity.setProductUuid(UUID.randomUUID().toString());
 		
 		productEntity.setCreated_date(LocalDateTime.now());
 		
@@ -45,13 +45,13 @@ public class ProductServiceImpl implements ProductService{
 	public ProductDTO updateProduct(ProductDTO product) {
 		ProductEntity productEntity = new ProductEntity();
 		productEntity.setId(product.getId());
-		productEntity.setProductId(product.getProductId());
-		productEntity.setProduct_name(product.getProduct_name());
+		productEntity.setProductUuid(product.getProductUuid());
+		productEntity.setProduct_name(product.getProductName());
 		productEntity.setCategory(product.getCategory());
 		productEntity.setGender(product.getGender());
 		productEntity.setPrice(product.getPrice());
 		productEntity.setDiscount(product.getDiscount());
-		productEntity.setCreated_date(product.getCreated_date());
+		productEntity.setCreated_date(product.getCreatedDate());
 		productEntity.setUpdated_date(LocalDateTime.now());
 		
 		productRepo.save(productEntity);
@@ -74,14 +74,14 @@ public class ProductServiceImpl implements ProductService{
 		ProductDTO productdto = new ProductDTO();
 		
 		productdto.setId(entity.getId());
-		productdto.setProductId(entity.getProductId());
-		productdto.setProduct_name(entity.getProduct_name());
+		productdto.setProductUuid(entity.getProductUuid());
+		productdto.setProductName(entity.getProduct_name());
 		productdto.setCategory(entity.getCategory());
 		productdto.setGender(entity.getGender());
 		productdto.setPrice(entity.getPrice());
 		productdto.setDiscount(entity.getDiscount());
-		productdto.setCreated_date(entity.getCreated_date());
-		productdto.setUpdated_date(entity.getUpdated_date());
+		productdto.setCreatedDate(entity.getCreated_date());
+		productdto.setUpdatedDate(entity.getUpdated_date());
 		
 		return productdto;
 	

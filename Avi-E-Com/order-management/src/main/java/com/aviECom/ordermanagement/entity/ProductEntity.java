@@ -18,18 +18,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="product_in_order")
+@Table(name="products_in_order")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long product_id;
+	private Long productId;
 	
-	private String product_uuid;
+	private String productUuid;
 	
-	private String product_name;
+	private String productName;
 	
 	private String category;
 	

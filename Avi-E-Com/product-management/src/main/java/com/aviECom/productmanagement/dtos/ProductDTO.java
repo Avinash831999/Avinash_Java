@@ -10,9 +10,9 @@ import lombok.Data;
 public class ProductDTO{
 	private Long id;
 	
-	private String productId;
+	private String productUuid;
 	
-	private String product_name;
+	private String productName;
 	
 	private String category;
 	
@@ -23,8 +23,8 @@ public class ProductDTO{
 	private float discount;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private LocalDateTime created_date;
+	private LocalDateTime createdDate;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private LocalDateTime updated_date;
+	private LocalDateTime updatedDate;
 }

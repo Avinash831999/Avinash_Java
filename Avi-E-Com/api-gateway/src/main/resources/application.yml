@@ -1,0 +1,19 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: avi-api-gateway
+  config:
+    import: "configserver:http://localhost:8040/"
+      # -"application_prod.yml"
+      # -"applictaion_qa.yml"
+#  profiles:
+#    active: "qa" 
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8050/eureka/

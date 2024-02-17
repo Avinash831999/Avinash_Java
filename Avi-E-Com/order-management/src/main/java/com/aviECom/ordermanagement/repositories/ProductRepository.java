@@ -1,6 +1,9 @@
 package com.aviECom.ordermanagement.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.aviECom.ordermanagement.entity.ProductEntity;
@@ -8,5 +11,7 @@ import com.aviECom.ordermanagement.entity.ProductEntity;
 
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Long>{
-
+	@Query(value ="select * from products_in_order pio where product_id in (select product_id from products_order_mapping pom where pom.order_id = ?1)",
+			nativeQuery=true)
+	List<ProductEntity> productInOrder(Long orderId); 
 }

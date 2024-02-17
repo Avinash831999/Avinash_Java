@@ -1,6 +1,8 @@
 package com.aviECom.ordermanagement.dtos;
 
 import java.time.LocalDateTime;
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,17 +11,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderResponseDto {
-	private long order_id;
-	private String order_uuid;
-	private String user_id;
+	private long orderId;
+	private String orderUuid;
+	private Long userId;
 	private String address;
-	private LocalDateTime ordered_date;
+	private LocalDateTime orderedDate;
 
-	private String mode_of_delivery;
+	private String modeOfDelivery;
 
-	private double total_amount;
-	private LocalDateTime expected_delivery_date;
+	private double totalAmount;
+	private LocalDateTime expectedDeliveryDate;
+	private LocalDateTime deliveredDate;
 
-	private String order_status;
-	//Set<ProductDTO> productsOrdered;
+	private String orderStatus;
+	Set<ProductDTO> productsOrdered;
 }

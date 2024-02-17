@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 		entity.setFirstName(userdto.getFirstName());
 		entity.setLastName(userdto.getLastName());
 		entity.setEmail(userdto.getEmail());
-		entity.setCreated_date(userdto.getCreated_date());
+		entity.setCreated_date(userdto.getCreatedDate());
 		entity.setUserId(userdto.getUserId());
 		entity.setUpdated_date(LocalDateTime.now());
 		
@@ -71,8 +71,8 @@ public class UserServiceImpl implements UserService {
 		userDTO.setFirstName(entity.getFirstName());
 		userDTO.setLastName(entity.getLastName());
 		userDTO.setEmail(entity.getEmail());
-		userDTO.setCreated_date(entity.getCreated_date());
-		userDTO.setUpdated_date(entity.getUpdated_date());
+		userDTO.setCreatedDate(entity.getCreated_date());
+		userDTO.setUpdatedDate(entity.getUpdated_date());
 		
 		
 		

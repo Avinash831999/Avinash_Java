@@ -20,7 +20,7 @@ public class ProductEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String productId;
+	private String productUuid;
 	
 	private String product_name;
 	

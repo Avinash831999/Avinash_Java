@@ -1,6 +1,7 @@
 package com.aviECom.usermanagement.dtos;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -19,8 +20,10 @@ public class UserDTO {
 	private String email;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private LocalDateTime created_date;
+	private LocalDateTime createdDate;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private LocalDateTime updated_date;
+	private LocalDateTime updatedDate;
+	
+	private Set<UserOrderDetails> orders;
 }

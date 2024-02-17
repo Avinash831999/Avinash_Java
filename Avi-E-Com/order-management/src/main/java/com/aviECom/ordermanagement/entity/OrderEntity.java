@@ -20,35 +20,38 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "orders")
+@Table(name = "orders_tbl")
 public class OrderEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long order_id;
+	private long orderId;
 	
-	private String order_uuid;
-	private Long user_id;
+	private String orderUuid;
+	private Long userId;
 	private String address;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private LocalDateTime ordered_date;
-	
-	private String mode_of_delivery;
-	
-	private double total_amount;
+	private LocalDateTime orderedDate;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private LocalDateTime expected_delivery_date;
+	private LocalDateTime deliveredDate;
 	
-	private String order_status;
+	private String modeOfDelivery;
+	
+	private double totalAmount;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime expectedDeliveryDate;
+	
+	private String orderStatus;
 	
 	@ManyToMany(fetch = FetchType.LAZY,cascade = {
 			CascadeType.PERSIST,
 	          CascadeType.MERGE
 	    })
 	@JoinTable(
-			  name = "order_products_mapping", 
+			  name = "products_order_mapping", 
 			  joinColumns = @JoinColumn(name = "order_id"), 
 					  inverseJoinColumns = @JoinColumn(name = "product_id"))
     Set<ProductEntity> productsOrdered = new HashSet<>();
