@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "6a505dcd-8e20-4432-bf17-4b05c594e2ba",
+		"name": "OrderManagement",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7613243"
+	},
+	"item": [
+		{
+			"name": "PlaceOrder",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\":2,\r\n    \"products\":[\r\n        {\r\n            \"id\":5,\r\n            \"quantity\":2\r\n        },\r\n        {\r\n            \"id\":6,\r\n            \"quantity\":5\r\n        }\r\n    ],\r\n    \"modeOfDelivery\":\"DHL\",\r\n    \"address\":\"abc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8030/api/order/placeOrder",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8030",
+					"path": [
+						"api",
+						"order",
+						"placeOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get order details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8030/api/order/getUsersOrders/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8030",
+					"path": [
+						"api",
+						"order",
+						"getUsersOrders",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
