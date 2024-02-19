@@ -1,4 +1,4 @@
-package com.aviECom.productmanagement.controllersImpl;
+package com.aviECom.productmanagement.controllers.Impl;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

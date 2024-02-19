@@ -1,4 +1,4 @@
-package com.aviECom.ordermanagement.controllersImpl;
+package com.aviECom.ordermanagement.controllers.Impl;
 
 import java.util.List;
 

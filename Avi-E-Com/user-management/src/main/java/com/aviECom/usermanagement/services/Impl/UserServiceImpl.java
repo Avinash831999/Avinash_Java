@@ -1,4 +1,4 @@
-package com.aviECom.usermanagement.serviceImpl;
+package com.aviECom.usermanagement.services.Impl;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

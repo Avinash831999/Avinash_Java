@@ -1,4 +1,4 @@
-package com.aviECom.ordermanagement.serviceImpl;
+package com.aviECom.ordermanagement.services.Impl;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -19,17 +19,22 @@ import com.aviECom.ordermanagement.entity.ProductEntity;
 import com.aviECom.ordermanagement.repositories.OrderRepository;
 import com.aviECom.ordermanagement.repositories.ProductRepository;
 import com.aviECom.ordermanagement.services.OrderService;
+import com.aviECom.ordermanagement.services.clients.ProductFeignClient;
+
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class OrderServiceImpl implements OrderService{
 
 	private final OrderRepository orderRepo;
 	private final ProductRepository productRepo;
+	private final ProductFeignClient productFeign;
 	
-	public OrderServiceImpl(OrderRepository orderRepo,ProductRepository productRepo) {
-		this.orderRepo=orderRepo;
-		this.productRepo=productRepo;
-	}
+//	public OrderServiceImpl(OrderRepository orderRepo,ProductRepository productRepo) {
+//		this.orderRepo=orderRepo;
+//		this.productRepo=productRepo;
+//	}
 	
 	@Override
 	public OrderRequestDto placeOrder(OrderRequestDto orderReq) {
@@ -52,7 +57,7 @@ public class OrderServiceImpl implements OrderService{
 //			products.add(getProductDetails(product.getId()));
 //		});
 		
-		//double amount = 0;
+		double amount = 0;
 		for( ProductInOrderDTO product: orderReq.getProducts()) {
 			
 			ProductDTO productInOrder = getProductDetails(product.getId());
@@ -66,14 +71,14 @@ public class OrderServiceImpl implements OrderService{
 			productEntity.setPrice(productInOrder.getPrice());
 			productEntity.setDiscount(productInOrder.getDiscount());
 			
-			
+			amount = amount + productInOrder.getPrice() - 
+					((productInOrder.getDiscount()/100)*productInOrder.getPrice());
 			
 			orderEntity.getProductsOrdered().add(productEntity);
 			//productEntity.getOrders().add(orderEntity);
 			//products.add(productEntity);
 			//productRepo.save(productEntity);
 			
-			//amount=amount+(productInOrder.getPrice()-(amount * (productInOrder.getDiscount()/100)))*product.getQuantity();
 		}
 			
 		orderRepo.save(orderEntity);
@@ -97,9 +102,12 @@ public class OrderServiceImpl implements OrderService{
 	
 	private ProductDTO getProductDetails(Long product_id) {
 		
-		String uri ="http://localhost:8010/api/product/get/"+product_id;
-		RestTemplate rest = new RestTemplate();
-		ProductDTO productDetails = rest.getForObject(uri, ProductDTO.class);
+//		String uri ="http://localhost:8010/api/product/get/"+product_id;
+//		RestTemplate rest = new RestTemplate();
+//		ProductDTO productDetails = rest.getForObject(uri, ProductDTO.class);
+		
+		ProductDTO productDetails = this.productFeign.getProductDetails(product_id).getBody();
+		
 		return productDetails;
 		
 	}
